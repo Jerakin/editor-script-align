@@ -1,0 +1,228 @@
+local M = {}
+
+local map = {[-1]=math.min, [1]=math.max}
+
+local function sum(T)
+    local result = 0
+    for _, value in pairs(T) do
+        result = result + value
+    end
+    return result
+end
+
+local function scalar(v1, v2)
+    return  {v1[1]*v2[1], v1[2]*v2[2], v1[3]*v2[3]}
+end
+
+local function rotate_point(x, y, rotation)
+    local angle = math.rad(rotation)
+    local x_d =  x * math.cos(angle) + y * math.sin(angle)
+    local y_d = -x * math.sin(angle) + y * math.cos(angle)
+    return x_d, y_d
+end
+
+local function get_rotated_size(width, height, rotation)
+    local max_y = height * 0.5
+    local max_x = width * 0.5
+    local min_y = -max_y
+    local min_x = -max_x
+
+    local x_points = {}
+    local y_points = {}
+    
+    for _, p in pairs{{min_x,min_y}, {min_x, max_y}, {max_x, min_y}, {max_x, max_y}} do
+        local x, y = rotate_point(p[1], p[2], rotation)
+        table.insert(x_points, x)
+        table.insert(y_points, y)
+    end
+    -- Return the calculated "bounding box"
+    return {math.max(table.unpack(x_points)) - math.min(table.unpack(x_points)), math.max(table.unpack(y_points)) - math.min(table.unpack(y_points)), 0}
+end
+
+local function center(ids, x, y)
+    local commands = {}
+    local target_x = {}
+    local target_y = {}
+    for _, id in pairs(ids) do
+        if editor.can_get(id, "position") then
+            local position = editor.get(id, "position")
+            table.insert(target_x, position[1])
+            table.insert(target_y, position[2])
+        end
+    end
+    -- Calculate the avarage new value if #target_* is more than 0
+    target_x = #target_x and sum(target_x) / #target_x or target_x
+    target_y = #target_y and sum(target_y) / #target_y or target_y
+    
+    for _, id in pairs(ids) do
+        local position = editor.get(id, "position")
+        -- multiply the average new value with the input x to 0 out the axis we don't wnt
+        position[1] = position[1] - (position[1] * x) + (target_x * x)
+        position[2] = position[2] - (position[2] * y) + (target_y * y)
+        table.insert(commands, {
+            action = "set", 
+            node_id = id, 
+            property = "position", 
+            value = position
+        })
+    end
+    return commands
+end
+
+local function get_bounding_box_of_node(id)
+    local size = editor.get(id, "size")
+    local scale = editor.get(id, "scale")
+    local rotation = editor.get(id, "rotation")
+    local normalize_size = scalar(size, scale)
+    return get_rotated_size(normalize_size[1], normalize_size[2], rotation[3])
+end
+
+local function align(ids, x, y, f)
+    local commands = {}
+    local target_x
+    local target_y
+    for _, id in pairs(ids) do
+        if editor.can_get(id, "position") then
+            local position = editor.get(id, "position")
+            local pos_x = position[1]
+            local pos_y = position[2]
+            local bounding_box = get_bounding_box_of_node(id)
+            pos_x = pos_x + (x * f * bounding_box[1] * 0.5)
+            pos_y = pos_y + (y * f * bounding_box[2] * 0.5)
+            target_x = map[f](pos_x, target_x or pos_x)
+            target_y = map[f](pos_y, target_y or pos_y)
+        end
+    end
+
+    for _, id in pairs(ids) do
+        local position = editor.get(id, "position")
+        local pos_x = position[1]
+        local pos_y = position[2]
+        local bounding_box = get_bounding_box_of_node(id)
+        pos_x = pos_x - (pos_x * x) + (target_x * x) - (x * f * bounding_box[1] * 0.5)
+        pos_y = pos_y - (pos_y * y) + (target_y * y) - (y * f * bounding_box[2] * 0.5)
+        table.insert(commands, {
+            action = "set", 
+            node_id = id, 
+            property = "position", 
+            value = position
+        })
+    end
+    return commands
+end
+
+
+function M.get_commands()
+    return {
+        {
+            label="Align Right",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = function(opts)
+                for _, id in pairs(opts.selection) do
+                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
+                        return true
+                    end
+                    return false
+                end
+            end,
+            run = function(opts)
+                return align(opts.selection, 1, 0, 1)
+            end
+        },
+        {
+            label="Align Left",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = function(opts)
+                for _, id in pairs(opts.selection) do
+                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
+                        return true
+                    end
+                    return false
+                end
+            end,
+            run = function(opts)
+                return align(opts.selection, 1, 0, -1)
+            end
+        },
+        {
+            label="Align Top",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = function(opts)
+                for _, id in pairs(opts.selection) do
+                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
+                        return true
+                    end
+                    return false
+                end
+            end,
+            run = function(opts)
+                return align(opts.selection, 0, 1, 1)
+            end
+        },
+        {
+            label="Align Down",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = function(opts)
+                for _, id in pairs(opts.selection) do
+                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
+                        return true
+                    end
+                    return false
+                end
+            end,
+            run = function(opts)
+                return align(opts.selection, 0, 1, -1)
+            end
+        },
+        {
+            label="Align Vertical Center",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = function(opts)
+                for _, id in pairs(opts.selection) do
+                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
+                        return true
+                    end
+                    return false
+                end
+            end,
+            run = function(opts)
+                return center(opts.selection, 1, 0)
+            end
+        },
+        {
+            label="Align Horizontal Center",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = function(opts)
+                for _, id in pairs(opts.selection) do
+                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
+                        return true
+                    end
+                    return false
+                end
+            end,
+            run = function(opts)
+                return center(opts.selection, 0, 1)
+            end
+        }
+    }
+end
+
+return M
