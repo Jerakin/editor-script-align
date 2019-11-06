@@ -2,9 +2,6 @@ local M = {}
 
 local min_max_map = {[-1]=math.min, [1]=math.max}
 
--- TODO: Take pivot into consideration
--- TODO: If only one object is selected then align it to the document
--- TODO: Take all 3 rotations into consideration
 
 local function sum(T)
     local result = 0
