@@ -1,6 +1,10 @@
 local M = {}
 
-local map = {[-1]=math.min, [1]=math.max}
+local min_max_map = {[-1]=math.min, [1]=math.max}
+
+-- TODO: Take pivot into consideration
+-- TODO: If only one object is selected then align it to the document
+-- TODO: Take all 3 rotations into consideration
 
 local function sum(T)
     local result = 0
@@ -70,18 +74,32 @@ local function center(ids, x, y)
 end
 
 local function get_bounding_box_of_node(id)
-    local size = editor.get(id, "size")
-    local scale = editor.get(id, "scale")
-    local rotation = editor.get(id, "rotation")
-    local normalize_size = scalar(size, scale)
-    return get_rotated_size(normalize_size[1], normalize_size[2], rotation[3])
+    local size = {0, 0, 0}
+    local scale = {1, 1, 1}
+    if editor.can_get(id, "size") then
+        size = editor.get(id, "size")
+    end
+    if editor.can_get(id, "scale") then
+        scale = editor.get(id, "scale")
+    end
+    if editor.can_get(id, "rotation") then
+        local rotation = editor.get(id, "rotation")
+        local normalize_size = scalar(size, scale)
+        return get_rotated_size(normalize_size[1], normalize_size[2], rotation[3])
+    else
+        return scalar(size, scale)
+    end
+end
+
+local function align(ids)
+    
 end
 
 local function align(ids, x, y, f)
     local commands = {}
     local target_x
     local target_y
-
+    
     -- First we find the target_x and y
     for _, id in pairs(ids) do
         if editor.can_get(id, "position") then
@@ -91,8 +109,8 @@ local function align(ids, x, y, f)
             local bounding_box = get_bounding_box_of_node(id)
             pos_x = pos_x + (x * f * bounding_box[1] * 0.5)
             pos_y = pos_y + (y * f * bounding_box[2] * 0.5)
-            target_x = map[f](pos_x, target_x or pos_x)
-            target_y = map[f](pos_y, target_y or pos_y)
+            target_x = min_max_map[f](pos_x, target_x or pos_x)
+            target_y = min_max_map[f](pos_y, target_y or pos_y)
         end
     end
 
@@ -129,14 +147,7 @@ function M.get_commands()
             query = {
                 selection = {type = "outline", cardinality = "many"}
             },
-            active = function(opts)
-                for _, id in pairs(opts.selection) do
-                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
-                        return true
-                    end
-                    return false
-                end
-            end,
+            active = active,
             run = function(opts)
                 return align(opts.selection, 1, 0, 1)
             end
@@ -147,14 +158,7 @@ function M.get_commands()
             query = {
                 selection = {type = "outline", cardinality = "many"}
             },
-            active = function(opts)
-                for _, id in pairs(opts.selection) do
-                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
-                        return true
-                    end
-                    return false
-                end
-            end,
+            active = active,
             run = function(opts)
                 return align(opts.selection, 1, 0, -1)
             end
@@ -165,14 +169,7 @@ function M.get_commands()
             query = {
                 selection = {type = "outline", cardinality = "many"}
             },
-            active = function(opts)
-                for _, id in pairs(opts.selection) do
-                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
-                        return true
-                    end
-                    return false
-                end
-            end,
+            active = active,
             run = function(opts)
                 return align(opts.selection, 0, 1, 1)
             end
@@ -183,14 +180,7 @@ function M.get_commands()
             query = {
                 selection = {type = "outline", cardinality = "many"}
             },
-            active = function(opts)
-                for _, id in pairs(opts.selection) do
-                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
-                        return true
-                    end
-                    return false
-                end
-            end,
+            active = active,
             run = function(opts)
                 return align(opts.selection, 0, 1, -1)
             end
@@ -201,14 +191,7 @@ function M.get_commands()
             query = {
                 selection = {type = "outline", cardinality = "many"}
             },
-            active = function(opts)
-                for _, id in pairs(opts.selection) do
-                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
-                        return true
-                    end
-                    return false
-                end
-            end,
+            active = active,
             run = function(opts)
                 return center(opts.selection, 1, 0)
             end
@@ -219,14 +202,7 @@ function M.get_commands()
             query = {
                 selection = {type = "outline", cardinality = "many"}
             },
-            active = function(opts)
-                for _, id in pairs(opts.selection) do
-                    if editor.can_set(id, "position") or editor.can_set(id, "rotation") or editor.can_set(id, "scale") then
-                        return true
-                    end
-                    return false
-                end
-            end,
+            active = active,
             run = function(opts)
                 return center(opts.selection, 0, 1)
             end
