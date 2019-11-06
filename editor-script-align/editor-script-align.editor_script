@@ -60,9 +60,9 @@ local function center(ids, x, y)
         position[1] = position[1] - (position[1] * x) + (target_x * x)
         position[2] = position[2] - (position[2] * y) + (target_y * y)
         table.insert(commands, {
-            action = "set", 
-            node_id = id, 
-            property = "position", 
+            action = "set",
+            node_id = id,
+            property = "position",
             value = position
         })
     end
@@ -81,6 +81,8 @@ local function align(ids, x, y, f)
     local commands = {}
     local target_x
     local target_y
+
+    -- First we find the target_x and y
     for _, id in pairs(ids) do
         if editor.can_get(id, "position") then
             local position = editor.get(id, "position")
@@ -94,23 +96,30 @@ local function align(ids, x, y, f)
         end
     end
 
+    -- Now with the max/min found we can position them
     for _, id in pairs(ids) do
         local position = editor.get(id, "position")
-        local pos_x = position[1]
-        local pos_y = position[2]
         local bounding_box = get_bounding_box_of_node(id)
-        pos_x = pos_x - (pos_x * x) + (target_x * x) - (x * f * bounding_box[1] * 0.5)
-        pos_y = pos_y - (pos_y * y) + (target_y * y) - (y * f * bounding_box[2] * 0.5)
+        position[1] = position[1] - (position[1] * x) + (target_x * x) - (x * f * bounding_box[1] * 0.5)
+        position[2] = position[2] - (position[2] * y) + (target_y * y) - (y * f * bounding_box[2] * 0.5)
         table.insert(commands, {
-            action = "set", 
-            node_id = id, 
-            property = "position", 
+            action = "set",
+            node_id = id,
+            property = "position",
             value = position
         })
     end
     return commands
 end
 
+local function active(opts)
+    for _, id in pairs(opts.selection) do
+        if not editor.can_set(id, "position") then
+            return false
+        end
+    end
+    return #opts.selection > 1
+end
 
 function M.get_commands()
     return {
