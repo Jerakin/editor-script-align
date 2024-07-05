@@ -41,7 +41,7 @@ local function get_rotated_size(width, height, rotation)
 end
 
 local function center(ids, x, y)
-    local commands = {}
+    local transactions = {}
     local target_x = {}
     local target_y = {}
     for _, id in pairs(ids) do
@@ -60,14 +60,9 @@ local function center(ids, x, y)
         -- multiply the average new value with the input x to 0 out the axis we don't wnt
         position[1] = position[1] - (position[1] * x) + (target_x * x)
         position[2] = position[2] - (position[2] * y) + (target_y * y)
-        table.insert(commands, {
-            action = "set",
-            node_id = id,
-            property = "position",
-            value = position
-        })
+        table.insert(transactions, editor.tx.set(id, "position", {position[1], position[2], position[3]}))
     end
-    return commands
+    editor.transact(transactions)
 end
 
 local function get_bounding_box_of_node(id)
@@ -93,7 +88,7 @@ local function align(ids)
 end
 
 local function align(ids, x, y, f)
-    local commands = {}
+    local transactions = {}
     local target_x
     local target_y
     
@@ -117,14 +112,9 @@ local function align(ids, x, y, f)
         local bounding_box = get_bounding_box_of_node(id)
         position[1] = position[1] - (position[1] * x) + (target_x * x) - (x * f * bounding_box[1] * 0.5)
         position[2] = position[2] - (position[2] * y) + (target_y * y) - (y * f * bounding_box[2] * 0.5)
-        table.insert(commands, {
-            action = "set",
-            node_id = id,
-            property = "position",
-            value = position
-        })
+        table.insert(transactions, editor.tx.set(id, "position", {position[1], position[2], position[3]}))
     end
-    return commands
+    editor.transact(transactions)
 end
 
 local function active(opts)
