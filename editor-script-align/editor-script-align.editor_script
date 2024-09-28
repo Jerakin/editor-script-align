@@ -83,9 +83,6 @@ local function get_bounding_box_of_node(id)
     end
 end
 
-local function align(ids)
-    
-end
 
 local function align(ids, x, y, f)
     local transactions = {}

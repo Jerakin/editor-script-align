@@ -1,831 +1,228 @@
-script: ""
-fonts {
-  name: "system_font"
-  font: "/builtins/fonts/system_font.font"
-}
-background_color {
-  x: 0.0
-  y: 0.0
-  z: 0.0
-  w: 0.0
-}
 nodes {
   position {
-    x: 306.1645
-    y: 330.2253
+    x: 56.0
+    y: 353.0
     z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 40.0
-    y: 40.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "box"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  layer: ""
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
-}
-nodes {
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 40.0
-    y: 40.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "child\n"
-  ""
-  font: "system_font"
-  id: "text"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  parent: "box"
-  layer: ""
-  inherit_alpha: true
-  alpha: 1.0
-  outline_alpha: 1.0
-  shadow_alpha: 1.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
-}
-nodes {
-  position {
-    x: 533.141
-    y: 146.213
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
   }
   size {
     x: 50.0
     y: 50.0
-    z: 0.0
-    w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "offset"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  layer: ""
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
+    x: 0.6
     y: 0.0
     z: 0.0
-    w: 0.0
   }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
+  type: TYPE_BOX
+  id: "box"
+  inherit_alpha: true
 }
 nodes {
   position {
-    x: 19.39
-    y: 20.017
+    x: 198.0
+    y: 185.0
     z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
   }
   size {
-    x: 40.0
-    y: 40.0
-    z: 0.0
-    w: 1.0
+    x: 50.0
+    y: 50.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 0.0
-    w: 1.0
+    x: 0.0
+    y: 0.102
+    z: 0.502
   }
   type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "box4"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "offset"
-  layer: ""
+  id: "box1"
   inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
 }
 nodes {
   position {
-    x: 420.3316
-    y: 354.615
+    x: 56.0
+    y: 173.0
     z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
   }
   size {
-    x: 80.0
-    y: 40.0
-    z: 0.0
-    w: 1.0
+    x: 50.0
+    y: 50.0
   }
   color {
-    x: 1.0
-    y: 0.0
-    z: 1.0
-    w: 1.0
+    x: 0.0
+    y: 0.2
+    z: 0.2
   }
   type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "box6"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_N
-  adjust_mode: ADJUST_MODE_FIT
-  layer: ""
+  id: "box2"
   inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
 }
 nodes {
   position {
-    x: 416.6717
-    y: 249.703
+    x: 376.0
+    y: 353.0
     z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: -90.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
   }
   size {
-    x: 80.0
-    y: 40.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 0.4
-    y: 0.6
-    z: 0.6
-    w: 1.0
-  }
-  type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "box7"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  layer: ""
-  inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
-}
-nodes {
-  position {
-    x: 242.53992
-    y: 491.117
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: -14.057
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 80.0
-    y: 40.0
-    z: 0.0
-    w: 1.0
+    x: 50.0
+    y: 50.0
   }
   color {
     x: 0.2
-    y: 0.101960786
-    z: 0.5019608
-    w: 1.0
+    y: 0.0
+    z: 0.2
   }
   type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: ""
+  id: "box3"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 198.0
+    y: 353.0
+    z: 0.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.302
+    y: 0.0
+    z: 0.102
+  }
+  type: TYPE_BOX
+  id: "box4"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 376.0
+    y: 195.0
+    z: 0.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.102
+    y: 0.0
+    z: 0.408
+  }
+  type: TYPE_BOX
+  id: "box5"
+  pivot: PIVOT_E
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 548.0
+    y: 353.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.6
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "box6"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 53.0
+    y: -171.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.702
+    y: 0.102
+    z: 0.102
+  }
+  type: TYPE_BOX
   id: "box8"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_N
-  adjust_mode: ADJUST_MODE_FIT
-  layer: ""
+  parent: "box6"
   inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
 }
 nodes {
   position {
-    x: 198.88
-    y: 394.472
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
+    x: 837.0
+    y: 353.0
   }
   size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
+    x: 50.0
+    y: 50.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_TEMPLATE
-  id: "template"
-  layer: ""
-  inherit_alpha: true
-  alpha: 1.0
-  template: "/main/te.gui"
-  template_node_child: false
-}
-nodes {
-  position {
-    x: 0.0
+    x: 0.2
     y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 70.0
-    y: 30.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
+    z: 0.2
   }
   type: TYPE_BOX
-  blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "template/box"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  parent: "template"
-  layer: ""
+  id: "box9"
   inherit_alpha: true
-  slice9 {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 0.0
-  }
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: true
-  size_mode: SIZE_MODE_MANUAL
 }
 nodes {
   position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
+    x: 6.0
+    y: -163.0
   }
   size {
-    x: 70.0
-    y: 30.0
-    z: 0.0
-    w: 1.0
+    x: 50.0
+    y: 50.0
   }
   color {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
+    x: 0.302
+    y: 0.102
+    z: 0.302
   }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "template"
-  font: "system_font"
-  id: "template/text"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  parent: "template/box"
-  layer: ""
+  type: TYPE_BOX
+  id: "box11"
+  parent: "box9"
   inherit_alpha: true
-  alpha: 1.0
-  outline_alpha: 1.0
-  shadow_alpha: 1.0
-  template_node_child: true
-  text_leading: 1.0
-  text_tracking: 0.0
 }
 nodes {
   position {
-    x: 163.797
-    y: 239.703
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
+    x: 690.0
+    y: 353.0
   }
   size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
+    x: 50.0
+    y: 50.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
+    x: 0.302
+    y: 0.0
+    z: 0.102
   }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "Only Text  asd ada ada sda sda das dasd adsa sd"
-  font: "system_font"
-  id: "text1"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_N
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: true
-  layer: ""
+  type: TYPE_BOX
+  id: "box10"
   inherit_alpha: true
-  alpha: 1.0
-  outline_alpha: 1.0
-  shadow_alpha: 1.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
 }
 nodes {
   position {
-    x: 750.125
-    y: 508.454
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
+    x: 10.0
+    y: -159.0
   }
   size {
-    x: 95.0
-    y: 30.0
-    z: 0.0
-    w: 1.0
+    x: 50.0
+    y: 50.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
+    x: 0.4
+    y: 0.102
+    z: 0.2
   }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "Fitted Text"
-  font: "system_font"
-  id: "text2"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  layer: ""
+  type: TYPE_BOX
+  id: "box7"
+  parent: "box10"
   inherit_alpha: true
-  alpha: 1.0
-  outline_alpha: 1.0
-  shadow_alpha: 1.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
-}
-nodes {
-  position {
-    x: 802.625
-    y: 383.949
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_PIE
-  blend_mode: BLEND_MODE_ALPHA
-  texture: ""
-  id: "pie"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  layer: ""
-  inherit_alpha: true
-  outerBounds: PIEBOUNDS_ELLIPSE
-  innerRadius: 0.0
-  perimeterVertices: 18
-  pieFillAngle: 360.0
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_MANUAL
-}
-nodes {
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 1.0
-    y: 1.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_PARTICLEFX
-  id: "particlefx"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  adjust_mode: ADJUST_MODE_FIT
-  layer: ""
-  inherit_alpha: true
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-  particlefx: "asd"
-}
-nodes {
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 1.0
-    y: 1.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_SPINE
-  blend_mode: BLEND_MODE_ALPHA
-  id: "spine"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  adjust_mode: ADJUST_MODE_FIT
-  layer: ""
-  inherit_alpha: true
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  template_node_child: false
-  size_mode: SIZE_MODE_AUTO
-  spine_scene: ""
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
-max_nodes: 512
-particlefxs {
-  name: "asd"
-  particlefx: "/main/asd.particlefx"
-}
