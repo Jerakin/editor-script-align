@@ -269,6 +269,28 @@ function M.get_commands()
             end
         },
         {
+            label="Align Front",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = active,
+            run = function(opts)
+                return align_axis(opts.selection, 3, 1)
+            end
+        },
+        {
+            label="Align Back",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = active,
+            run = function(opts)
+                return align_axis(opts.selection, 3, -1)
+            end
+        },
+        {
             label="Align Vertical Center",
             locations = {"Edit"},
             query = {
@@ -288,6 +310,17 @@ function M.get_commands()
             active = active,
             run = function(opts)
                 return center_axis(opts.selection, 2)
+            end
+        },
+        {
+            label="Align Depth Center",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = active,
+            run = function(opts)
+                return center_axis(opts.selection, 3)
             end
         }
     }
