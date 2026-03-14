@@ -137,14 +137,21 @@ end
 local function center_axis(ids, axis)
     local transactions = {}
     local target_store = {}
-    for _, id in pairs(ids) do
-        if editor.can_get(id, "position") then
-            local screen_position = get_screen_position(id)
-            local pivot_modifier = get_pivot_modifier(id)
-            table.insert(target_store, screen_position[axis] - pivot_modifier[axis])
+    if #ids == 1 then
+        local pos = {
+            [1] = editor.get("/game.project", "display.width") * 0.5,
+            [2] = editor.get("/game.project", "display.height") * 0.5,
+        }
+        table.insert(target_store, pos[axis])
+    else
+        for _, id in pairs(ids) do
+            if editor.can_get(id, "position") then
+                local screen_position = get_screen_position(id)
+                local pivot_modifier = get_pivot_modifier(id)
+                table.insert(target_store, screen_position[axis] - pivot_modifier[axis])
+            end
         end
     end
-
     -- Calculate the avarage new value if #target_* is more than 0
     local target_screen = #target_store > 0 and sum(target_store) / #target_store or target_store
 
@@ -220,6 +227,15 @@ local function active(opts)
         end
     end
     return #opts.selection > 1
+end
+
+local function active_single(opts)
+    for _, id in pairs(opts.selection) do
+        if not editor.can_set(id, "position") then
+            return false
+        end
+    end
+    return true
 end
 
 function M.get_commands()
@@ -308,6 +324,28 @@ function M.get_commands()
                 selection = {type = "outline", cardinality = "many"}
             },
             active = active,
+            run = function(opts)
+                return center_axis(opts.selection, 2)
+            end
+        },
+        {
+            label="Align Display Vertical Center",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = active_single,
+            run = function(opts)
+                return center_axis(opts.selection, 1)
+            end
+        },
+        {
+            label="Align Display Horizontal Center",
+            locations = {"Edit"},
+            query = {
+                selection = {type = "outline", cardinality = "many"}
+            },
+            active = active_single,
             run = function(opts)
                 return center_axis(opts.selection, 2)
             end
